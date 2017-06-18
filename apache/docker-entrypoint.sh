@@ -47,7 +47,8 @@ if [[ "$1" == apache2* ]] || [ "$1" == php-fpm ]; then
 			&& chown -R www-data:www-data /usr/src/concrete5
 		fi
 
-		tar cf - --one-file-system -C /usr/src/concrete5 . | tar xf -
+		tar cf - --one-file-system -C /usr/src/concrete5 . | tar xf -  && \
+		chmod 777 -R /var/www/html/{config,files,packages,themes,updates} && \
 		echo >&2 "Complete! Concrete5 has been successfully copied to $(pwd)"
 		if [ ! -e .htaccess ]; then
 			# NOTE: The "Indexes" option is disabled in the php:apache base image
