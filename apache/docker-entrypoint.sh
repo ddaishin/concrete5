@@ -35,7 +35,7 @@ if [[ "$1" == apache2* ]] || [ "$1" == php-fpm ]; then
 		exit 1
 	fi
 
-	if ! [ -e concrete/dispatcher.php -a ]; then
+	if ! [ -e concrete/dispatcher.php ]; then
 		echo >&2 "Concrete5 not found in $(pwd) - copying now..."
 		if [ "$(ls -A)" ]; then
 			echo >&2 "WARNING: $(pwd) is not empty - press Ctrl+C now if this is an error!"
