@@ -31,6 +31,10 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 #	} > /etc/php/conf.d/php-extra.ini
 #
 
+COPY docker-entrypoint.sh /entrypoint.sh
+COPY apache2-foreground /usr/local/bin/apache2-foreground
+RUN chmod +x /usr/local/bin/apache2-foreground
+
 # fix permission for osx
 RUN usermod -u 1000 www-data \
 	&& usermod -G staff www-data
@@ -42,9 +46,6 @@ VOLUME /var/www/html
 ENV TZ JST-9
 ENV XDEBUG_CONFIG remote_host=
 ENV CONCRETE5_VERSION 5.5.2.1
-
-COPY docker-entrypoint.sh /entrypoint.sh
-COPY apache2-foreground /usr/local/bin/apache2-foreground
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/usr/local/bin/apache2-foreground"]
