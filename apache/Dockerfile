@@ -46,4 +46,4 @@ ENV CONCRETE5_VERSION 5.5.2.1
 COPY docker-entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["apache2-foreground"]
+CMD ["/usr/sbin/apache2 -DFOREGROUND"]
