@@ -44,6 +44,7 @@ ENV XDEBUG_CONFIG remote_host=
 ENV CONCRETE5_VERSION 5.5.2.1
 
 COPY docker-entrypoint.sh /entrypoint.sh
+COPY apache2-foreground /usr/local/bin/apache2-foreground
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["source /etc/apache2/envvars && /usr/sbin/apache2 -DFOREGROUND"]
+CMD ["/usr/local/bin/apache2-foreground"]
