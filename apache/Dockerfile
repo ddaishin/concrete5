@@ -2,7 +2,7 @@ FROM ubuntu:12.04
 
 # install the PHP extensions
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
-	libpng12-dev libjpeg-dev cron supervisor vim libmagickwand-dev libmagickcore-dev imagemagick \
+	libpng12-dev libjpeg-dev cron supervisor vim libmagickwand-dev libmagickcore-dev imagemagick unzip \
 	apache2 php5-dev libapache2-mod-php5 php5-gd php5-mysql php-pear \
 	&& apt-get autoremove \
 	&& apt-get autoclean \
