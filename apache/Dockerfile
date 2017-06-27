@@ -20,7 +20,7 @@ RUN yes | pecl install xdebug-2.2.7 \
 	&& echo "xdebug.profiler_output_dir=\"/var/www\"" >> /etc/php5/conf.d/xdebug.ini
 
 RUN yes | pecl install apc \
-	&& echo "extension=$(find /usr/lib/php5/ -name apc.so)" > /etc/php5/conf.d/apc.ini \
+	&& echo "extension=$(find /usr/lib/php5/ -name apc.so)" > /etc/php5/conf.d/apc.ini
 
 ## set extra PHP.ini settings
 RUN { \
