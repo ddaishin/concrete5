@@ -3,14 +3,13 @@ FROM ubuntu:12.04
 # install the PHP extensions
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 	libpng12-dev libjpeg-dev cron supervisor vim libmagickwand-dev libmagickcore-dev imagemagick unzip \
-	apache2 php5-dev libapache2-mod-php5 php5-gd php5-mysql php-pear \
+	apache2 php5-dev libapache2-mod-php5 php5-gd php5-mysql php5-imagick php-pear \
 	&& apt-get autoremove \
 	&& apt-get autoclean \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # set xdebug
-# see https://gist.github.com/chadrien/c90927ec2d160ffea9c4
 RUN yes | pecl install xdebug-2.2.7 \
 	&& echo "zend_extension=$(find /usr/lib/php5/ -name xdebug.so)" > /etc/php5/conf.d/xdebug.ini \
 	&& echo "xdebug.remote_enable=on" >> /etc/php5/conf.dxdebug.ini \
@@ -18,10 +17,6 @@ RUN yes | pecl install xdebug-2.2.7 \
 	&& echo "xdebug.profiler_enable=1" >> /etc/php5/conf.d/xdebug.ini \
 	&& echo "xdebug.profiler_append=0" >> /etc/php5/conf.d/xdebug.ini \
 	&& echo "xdebug.profiler_output_dir=\"/var/www\"" >> /etc/php5/conf.d/xdebug.ini
-
-## ImageMaigck
-RUN yes | pecl install imagick \
-	&& echo "extension=$(find /usr/lib/php5/ -name imagick.so)" > /etc/php5/conf.d/imagick.ini
 
 ## set extra PHP.ini settings
 RUN { \
