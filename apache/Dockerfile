@@ -12,7 +12,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 # set xdebug
 RUN yes | pecl install xdebug-2.2.7 \
 	&& echo "zend_extension=$(find /usr/lib/php5/ -name xdebug.so)" > /etc/php5/conf.d/xdebug.ini \
-	&& echo "xdebug.remote_enable=on" >> /etc/php5/conf.dxdebug.ini \
+	&& echo "xdebug.remote_enable=on" >> /etc/php5/conf.d/xdebug.ini \
 	&& echo "xdebug.remote_autostart=off" >> /etc/php5/conf.d/xdebug.ini \
 	&& echo "xdebug.profiler_enable_trigger=1" >> /etc/php5/conf.d/xdebug.ini \
 	&& echo "xdebug.profiler_enable=0" >> /etc/php5/conf.d/xdebug.ini \
