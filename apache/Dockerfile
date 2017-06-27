@@ -14,9 +14,13 @@ RUN yes | pecl install xdebug-2.2.7 \
 	&& echo "zend_extension=$(find /usr/lib/php5/ -name xdebug.so)" > /etc/php5/conf.d/xdebug.ini \
 	&& echo "xdebug.remote_enable=on" >> /etc/php5/conf.dxdebug.ini \
 	&& echo "xdebug.remote_autostart=off" >> /etc/php5/conf.d/xdebug.ini \
-	&& echo "xdebug.profiler_enable=1" >> /etc/php5/conf.d/xdebug.ini \
+	&& echo "xdebug.profiler_enable_trigger=1" >> /etc/php5/conf.d/xdebug.ini \
+	&& echo "xdebug.profiler_enable=0" >> /etc/php5/conf.d/xdebug.ini \
 	&& echo "xdebug.profiler_append=0" >> /etc/php5/conf.d/xdebug.ini \
 	&& echo "xdebug.profiler_output_dir=\"/var/www\"" >> /etc/php5/conf.d/xdebug.ini
+
+RUN yes | pecl install apc \
+	&& echo "extension=$(find /usr/lib/php5/ -name apc.so)" > /etc/php5/conf.d/apc.ini \
 
 ## set extra PHP.ini settings
 RUN { \
